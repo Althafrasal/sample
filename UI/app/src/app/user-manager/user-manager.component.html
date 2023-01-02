@@ -1,0 +1,84 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-12 col-sm-8 col-md-8 col-lg-8">
+      <form class="d-flex">
+        <input class="form-control me-2 w-25 mt-1" type="search" placeholder="Search" [(ngModel)]="searchFilter" [ngModelOptions]="{standalone: true}" />
+        <!-- <button class="btn btn-sm mt-1" style="background-color: white">
+          <img src="assets/images/Search-icon.png" style="width: 20px; height: 20px" alt="" />
+        </button> -->
+        <div class="ms-2 mt-2" >
+          <mat-slide-toggle  color="primary" [checked]="true"  [routerLink]="['/inactiveUser']" >   Active Users</mat-slide-toggle>
+        </div>
+      </form>
+    </div>
+    <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+      <div class="text-end">
+        <button class="btn btn-sm mt-1" type="button" style="background-color: #676e5e; color: white"
+          (click)="openAddUser()">
+          ADD NEW USER
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2" >
+    <div class="col-12 col-lg-12">
+      <div class="table-responsive">
+        <table class="table" id="activeTable">
+          <thead>
+            <tr>
+              <th >SL.NO</th>
+              <th (click)="sort('fullName')">Full Name <i class="fa-solid fa-sort" ></i></th>
+              <th (click)="sort('email')">Email ID <i class="fa-solid fa-sort" ></i></th>
+              <th >Phone Number</th>
+              <th (click)="sort('userName')">User Name <i class="fa-solid fa-sort" ></i></th>
+              <th >Password</th>
+              <th><i class="fa-solid fa-pen-to-square"></i></th>
+              <th><i class="fa-solid fa-trash"></i></th>
+              <th>Status</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of data|filter : searchFilter|orderBy : orderHeader :isDescOrder|paginate :pagingConfig; let i = index" >
+              <td>{{i+1}}</td>
+              <td>{{ data.fullName }}</td>
+              <td>{{ data.email }}</td>
+              <td>{{ data.phonenumber }}</td>
+              <td>{{ data.userName }}</td>
+              <td>*****</td>
+              <!-- <td>{{ data.password }}</td> -->
+              <td *ngIf="data.editTenant === 1">
+                <input type="checkbox" id="editTenant" checked value="1" disabled />
+              </td>
+              <td *ngIf="data.editTenant === 0">
+                <input type="checkbox" id="editTenant" value="0" disabled />
+              </td>
+              <td *ngIf="data.deleteTenant === 1">
+                <input type="checkbox" id="deleteTenant" checked value="1" disabled />
+              </td>
+              <td *ngIf="data.deleteTenant === 0">
+                <input type="checkbox" id="deleteTenant" value="0" disabled />
+              </td>
+              <td *ngIf="data.status === 1">
+                <mat-slide-toggle color="primary" id="status" checked value="1" disabled>ACTIVE</mat-slide-toggle>
+              </td>
+
+              <td>
+                <button type="button" class="btn btn-sm" (click)="openEditUser(data.id)">
+                  Edit
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="text-end">
+          <pagination-controls previousLabel ='' nextLabel="" (pageChange)="onTableDataChange($event)"></pagination-controls>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

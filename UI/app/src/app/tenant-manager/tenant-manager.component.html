@@ -1,0 +1,92 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-12 col-sm-8 col-md-8 col-lg-8">
+      <form class="d-flex">
+        <input
+          class="form-control me-2 w-25 mt-1"
+          type="search"
+          placeholder="Search"
+          [(ngModel)]="searchFilter"
+          [ngModelOptions]="{ standalone: true }"
+        />
+
+        <div class="ms-2 mt-2">
+          <mat-slide-toggle
+            color="primary"
+            [checked]="true"
+            [routerLink]="['/inactiveTenant']"
+            >Active Tenants</mat-slide-toggle
+          >
+        </div>
+      </form>
+    </div>
+    <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+      <div class="text-end">
+        <button
+          class="btn btn-sm mt-1"
+          type="button"
+          style="background-color: #676e5e; color: white"
+          (click)="openAddTenant()"
+        >
+          <!-- margin-left: 650px; -->
+          ADD NEW TENANT
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-12 col-lg-12">
+      <div class="table-responsive">
+        <table class="table" id="tableDefinition">
+          <thead>
+            <tr>
+              <th >SL.NO</th>
+              <th (click)="sort('TenantName')">Tenant Name <i class="fa-solid fa-sort" ></i></th>
+              <th>Domain</th>
+              <th>Server</th>
+              <th>Extensions</th>
+              <th>Dispatcher</th>
+              <th>Admins</th>
+              <th>Status</th>
+              <th>Action</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let data of data | filter : searchFilter |orderBy : orderHeader :isDescOrder|paginate :pagingConfig; let i = index"
+            >
+              <td>{{ i + 1 }}</td>
+              <td>{{ data.TenantName }}</td>
+              <td>{{ data.No_Of_extensions }}</td>
+              <td>{{ data.dispatcher }}</td>
+              <td>{{ data.DomainName }}</td>
+              <td>{{ data.server }}</td>
+              <td>{{data.default_address}}</td>
+              <!-- <td> -->
+                <!-- <mat-slide-toggle color="primary" id="status" disabled
+                  >IN ACTIVE</mat-slide-toggle
+                > -->
+                <td *ngIf="data.status === 1">
+                  <mat-slide-toggle color="primary" id="status" checked value="1" disabled>ACTIVE</mat-slide-toggle>
+                </td>
+              <!-- </td> -->
+              <td>{{data.billing_address}}</td>
+
+              <td>
+                <button class="btn btn-sm" (click)="openEditTenant(data.id)">
+                  Edit
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="text-end">
+          <pagination-controls previousLabel ='prev' nextLabel="next" (pageChange)="onTableDataChange($event)"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+.ngx-pagination .current{
+  background: #676e5e !important ;
+}
+
+.ngx-pagination a,.ngx-pagination button{
+  cursor: pointer;
+
+}
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body
+{
+  background-color: #97A884;
+}
+td{
+  text-align: center;
+}
+thead{
+  text-align: center;
+}

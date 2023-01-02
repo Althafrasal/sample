@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #97a884; border-bottom: white 5px solid">
+  <div class="container-fluid">
+    <a class="navbar-brand"><img src="assets/images/zain_logo.png" style="width: 80px; height: 40px" alt="" /></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+      <form class="d-flex">
+        <!-- <img src="assets/images/userIcon.png" alt="UserLogo" style="width: 30px" alt="" /> -->
+        <i class="fa-solid fa-user" style="color: white;"></i>
+      </form>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div>
+      <a class="btn" style="background-color: #676e5e; color: white" [routerLink]="['/tenantManager']">
+          Tenant Manager </a>
+      <a class="btn ms-1" style="background-color: #676e5e; color: white" [routerLink]="['/userManager']">User
+        Manager </a>
+    </div>
+  </div>
+</div>
+
+

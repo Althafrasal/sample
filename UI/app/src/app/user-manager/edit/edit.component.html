@@ -1,0 +1,101 @@
+<div class="container">
+
+    <div class="row" style="background-color: #97a884; height: 40px">
+        <div class="col">
+            <h3 style="color: white;"  class="mt-2">EDIT USER</h3>
+        </div>
+        <div class="col text-end">
+            <button class="btn btn-sm mt-1" style="background-color: #676e5e; color: white" mat-button mat-dialog-close>
+                X
+            </button>
+        </div>
+    </div>
+    <form class="mx-1 mx-md-4 p-3" [formGroup]="editUserForm" #f="ngForm">
+        <div class="row form-group mt-4">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" formControlName="fullName" required />
+                <div *ngIf="
+            editUserForm.controls['fullName'].invalid &&
+            (editUserForm.controls['fullName'].dirty ||
+              editUserForm.controls['fullName'].touched)
+          ">
+                    <p style="color: red">please enter your Name</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <label class="form-label">Employee Email</label>
+                <input type="email" class="form-control" formControlName="email" required />
+                <div *ngIf="
+            editUserForm.controls['email'].invalid &&
+            (editUserForm.controls['email'].dirty ||
+              editUserForm.controls['email'].touched)
+          ">
+                    <p style="color: red">please enter valid E-mail</p>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group mt-3">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <label class="form-label">Phone Number</label>
+                <input type="text" maxlength="10" class="form-control" formControlName="phonenumber" required />
+                <div *ngIf="
+            editUserForm.controls['phonenumber'].invalid &&
+            (editUserForm.controls['phonenumber'].dirty ||
+              editUserForm.controls['phonenumber'].touched)
+          ">
+                    <div>
+                        <p style="color: red">please enter valid number</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <label class="form-label">name</label>
+                <input type="text" class="form-control" formControlName="userName" required />
+                <div *ngIf="
+            editUserForm.controls['userName'].invalid &&
+            (editUserForm.controls['userName'].dirty ||
+              editUserForm.controls['userName'].touched)
+          ">
+                    <div>
+                        <p style="color: red">please enter valid name</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group mt-4">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <label class="form-label">password</label>
+                <input type="password" class="form-control" formControlName="password" required />
+                <div *ngIf="
+            editUserForm.controls['password'].invalid &&
+            (editUserForm.controls['password'].dirty ||
+              editUserForm.controls['password'].touched)
+          ">
+                    <div>
+                        <p style="color: red">please enter valid password</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                <h4>Permissions</h4>
+                <input class="form-check-input" type="checkbox" formControlName="editTenant" />
+                <label class="form-label ms-1">Edit</label><br />
+                <input class="form-check-input" type="checkbox" formControlName="deleteTenant" />
+                <label class="form-label ms-1">Delete</label>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                <h4>Status</h4>
+                <label class="form-label">Active</label>
+                <mat-slide-toggle class="ms-2" color="primary" formControlName="status"></mat-slide-toggle>
+            </div>
+        </div>
+        <div class="text-end">
+            <button class="btn ms-1" style="background-color: #676e5e; color: white" (click)="updateUser()"
+                [disabled]="!f.valid">
+                Update
+            </button>
+        </div>
+    </form>
+</div>

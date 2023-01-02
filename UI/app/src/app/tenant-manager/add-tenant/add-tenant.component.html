@@ -1,0 +1,140 @@
+<div class="container">
+  <div class="row" style="background-color: #97a884; height: 40px">
+      <div class="col">
+          <h3 style="color: white;"  class="mt-2">ADD NEW TENANT</h3>
+      </div>
+      <div class="col text-end">
+          <button class="btn btn-sm mt-1" style="background-color: #676e5e; color: white" mat-button mat-dialog-close>
+              X
+          </button>
+      </div>
+  </div>
+
+  <form class="mx-1 mx-md-4 p-3" [formGroup]="addTenantForm" (ngSubmit)="addTenant()" #f="ngForm">
+      <div class="row form-group mt-4">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+              <label class="form-label">Tenant Name</label>
+              <input type="text" class="form-control" formControlName="tenantName" required />
+              <div *ngIf="
+              addTenantForm.controls['tenantName'].invalid &&
+          (addTenantForm.controls['tenantName'].dirty ||
+          addTenantForm.controls['tenantName'].touched)
+        ">
+                  <p style="color: red">please enter Tenant Name</p>
+              </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-3 col-lg-2">
+            <h4>Status</h4>
+            <label class="form-label">Active</label>
+            <mat-slide-toggle class="" color="primary" formControlName="status"></mat-slide-toggle>
+        </div>
+
+          <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+              <label class="form-label">Number of Extensions</label>
+              <input type="text" class="form-control" formControlName="extensions" required />
+              <div *ngIf="
+              addTenantForm.controls['extensions'].invalid &&
+          (addTenantForm.controls['extensions'].dirty ||
+          addTenantForm.controls['extensions'].touched)
+        ">
+                  <p style="color: red">please enter valid Extension</p>
+              </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+            <label class="form-label">Dispatcher</label>
+            <input type="text" class="form-control" formControlName="dispatcher" required />
+            <div *ngIf="
+            addTenantForm.controls['dispatcher'].invalid &&
+        (addTenantForm.controls['dispatcher'].dirty ||
+        addTenantForm.controls['dispatcher'].touched)
+      ">
+                <p style="color: red">please enter valid Dispatcher</p>
+            </div>
+        </div>
+      </div>
+      <div class="row form-group mt-3">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <label class="form-label">Domain Name</label>
+              <input type="text"  class="form-control" formControlName="domainName" required />
+              <div *ngIf="addTenantForm.controls['domainName'].invalid &&
+          (addTenantForm.controls['domainName'].dirty ||
+          addTenantForm.controls['domainName'].touched) ">
+                  <div>
+                      <p style="color: red">please enter valid Domain Name</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <label class="form-label">Server</label>
+              <input type="text" class="form-control" formControlName="server" required />
+              <div *ngIf="addTenantForm.controls['server'].invalid &&
+          (addTenantForm.controls['server'].dirty ||
+          addTenantForm.controls['server'].touched) ">
+                  <div>
+                      <p style="color: red">please enter valid Server</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- <div class="row form-group mt-4">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <label class="form-label">Default Address</label>
+              <textarea name="" id="" cols="50" rows="5" class="form-control" formControlName="defaultAddress"></textarea>
+              <div *ngIf="addTenantForm.controls['defaultAddress'].invalid &&
+              (addTenantForm.controls['defaultAddress'].dirty ||
+              addTenantForm.controls['defaultAddress'].touched) ">
+                      <div>
+                          <p style="color: red">please enter Address</p>
+                      </div>
+                  </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+             <label class="form-label">Billing Address</label>
+              <input type="checkbox" class="ms-5" (click)="sameAsDefault()">
+              <label for="">Same as Default Address</label>
+              <textarea name="" id="" cols="50" rows="5" class="form-control" formControlName="billingAddress"></textarea>
+              <div *ngIf="addTenantForm.controls['billingAddress'].invalid &&
+              (addTenantForm.controls['billingAddress'].dirty ||
+              addTenantForm.controls['billingAddress'].touched) ">
+                      <div>
+                          <p style="color: red">please enter Address</p>
+                      </div>
+                  </div>
+          </div>
+      </div> -->
+
+      <!-- edites -->
+      <div class="row form-group mt-4">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <label class="form-label">Default Address</label>
+            <textarea name="" id="" cols="50" rows="5" class="form-control" formControlName="defaultAddress" #get type="text" (input)='getMainVal(get.value)'></textarea>
+            <div *ngIf="addTenantForm.controls['defaultAddress'].invalid &&
+            (addTenantForm.controls['defaultAddress'].dirty ||
+            addTenantForm.controls['defaultAddress'].touched) ">
+                    <div>
+                        <p style="color: red">please enter Address</p>
+                    </div>
+                </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+           <label class="form-label">Billing Address</label>
+            <input type="checkbox" class="ms-5" id="checkBox" [(ngModel)]="checkedOrNot" formControlName="checkbox">
+            <label for="">Same as Default Address</label>
+            <textarea name="" id="" cols="50" rows="5" class="form-control" formControlName="billingAddress" type="text" [(ngModel)]="getSecVal"></textarea>
+            <div *ngIf="addTenantForm.controls['billingAddress'].invalid &&
+            (addTenantForm.controls['billingAddress'].dirty ||
+            addTenantForm.controls['billingAddress'].touched) ">
+                    <div>
+                        <p style="color: red">please enter Address</p>
+                    </div>
+                </div>
+        </div>
+    </div>
+          <div class="text-end mt-2">
+              <button class="btn" style="background-color: #676e5e; color: white;" (submit)="addTenant()"
+              [disabled]="!f.valid">
+              save
+          </button>
+          </div>
+  </form>
+</div>

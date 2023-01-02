@@ -1,0 +1,23 @@
+ /* .body {
+   background-color: #97a884;
+   height: 670px;
+   height: 100%;
+ } */
+
+ th {
+   background-color: #676E5E;
+   color: white;
+
+ }
+
+ #activeTable tr:nth-child(odd) {
+   background-color: #E6E7D5;
+ }
+
+ #activeTable tr:nth-child(even) {
+   background-color: #CDD6A9;
+ }
+
+ /* td {
+   width: 200px;
+ } */
